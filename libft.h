@@ -3,17 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dgomez-b <dgomez-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 22:09:52 by laura             #+#    #+#             */
-/*   Updated: 2021/10/14 15:32:37 by dgomez-b         ###   ########.fr       */
+/*   Updated: 2021/10/18 16:21:21 by dgomez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+/* ******************************* LIBRERIAS ******************************** */
+
+# include <stdlib.h>
 # include <string.h>
+# include <unistd.h>
+
+/* ******************************* PROTOTIPOS ******************************* */
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);

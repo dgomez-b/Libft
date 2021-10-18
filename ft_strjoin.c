@@ -6,23 +6,15 @@
 /*   By: dgomez-b <dgomez-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:21:43 by dgomez-b          #+#    #+#             */
-/*   Updated: 2021/10/07 18:20:34 by dgomez-b         ###   ########.fr       */
+/*   Updated: 2021/10/18 16:18:13 by dgomez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* ******************************* LIBRERIAS ******************************** */
 
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-/* ******************************* PROTOTIPOS ******************************* */
+#include "libft.h"
 
 /* ******************************* FUNCIONES ******************************** */
-
-size_t	ft_strlen(const char *s);
-size_t	ft_memcpy(void *dst, const void *src, size_t n);
 
 char	*ft_strjoin(char *s1, char *s2)
 {

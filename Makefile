@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: david <david@student.42.fr>                +#+  +:+       +#+         #
+#    By: dgomez-b <dgomez-b@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/04 17:26:24 by david             #+#    #+#              #
-#    Updated: 2021/10/14 15:28:52 by dgomez-b         ###   ########.fr        #
+#    Updated: 2021/10/18 16:12:47 by dgomez-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,6 @@ SRCS			=	ft_isprint.c ft_isalpha.c ft_bzero.c ft_memcpy.c \
 					ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 					ft_strmapi.c ft_strtrim.c ft_strlcat.c ft_striteri.c
 OBJS				= $(SRCS:.c=.o)
-BONUS				=   ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
-					ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
-						ft_lstmap.c ft_lstnew.c ft_lstsize.c
-BONUS_OBJS			= $(BONUS:.c=.o)
 CC				= gcc
 RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror -I.
@@ -32,10 +28,8 @@ all:			$(NAME)
 $(NAME):		$(OBJS)
 					ar rcs $(NAME) $(OBJS)
 clean:
-				$(RM) $(OBJS) $(BONUS_OBJS)
+				$(RM) $(OBJS)
 fclean:			clean
 					$(RM) $(NAME)
 re:				fclean $(NAME)
-bonus:			$(OBJS) $(BONUS_OBJS)
-					ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
-.PHONY:			all clean fclean re bonus
+.PHONY:			all clean fclean re
