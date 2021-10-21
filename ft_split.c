@@ -47,7 +47,7 @@ static void	ft_freemat(char **mat)
 
 	i = 0;
 	while (mat[i])
-		free(mat[i]);
+		free(mat[i++]);
 	free(mat);
 }
 
@@ -64,20 +64,24 @@ static size_t	ft_cantchar(const char *s, char c)
 	return (j);
 }
 
-static size_t	ft_skipgroup(const char *s, char c, int not)
+static char	*ft_substr2(const char *s, size_t ini, char c)
 {
+	char	*str;
 	size_t	i;
+	size_t	j;
 
-	if (!s)
+	if (!s || ini >= ft_strlen(s))
 		return (0);
 	i = 0;
-	if (not == 1)
-		while (s[i] != 0 && s[i] != c)
-			i++;
-	else if (not == 0)
-		while (s[i] != 0 && s[i] == c)
-			i++;
-	return (i);
+	while (s[ini + i] && s[ini + i] != c)
+		i++;
+	str = ft_calloc(i + 1, sizeof(char));
+	if (!str)
+		return (0);
+	j = -1;
+	while (++j < i)
+		str[j] = s[ini + j];
+	return (str);
 }
 
 char	**ft_split(const char *s, char c)
@@ -85,26 +89,26 @@ char	**ft_split(const char *s, char c)
 	char	**mat;
 	size_t	i;
 	size_t	j;
-	size_t	pos;
 
+	if (!s)
+		return (0);
 	mat = ft_calloc(ft_cantword(s, c) + 1, sizeof(char *));
-	if (!s || !mat)
+	if (!mat)
 		return (0);
 	if (ft_cantchar(s, c) == ft_strlen(s))
 		return (mat);
-	j = 0;
-	i = ft_skipgroup(s, c, 0);
-	while (i < ft_strlen(s))
+	j = (i = 0);
+	while (j < ft_cantword(s, c))
 	{
-		pos = i;
-		i += ft_skipgroup(s + i, c, 1);
-		mat[j] = ft_substr(s, pos, i - pos);
-		if (!mat[j++])
+		while (i < ft_strlen(s) && s[i] == c)
+			i++;
+		mat[j] = ft_substr2(s, i, c);
+		if (!mat[j])
 		{
 			ft_freemat(mat);
 			return (0);
 		}
-		i += ft_skipgroup(s + i, c, 0);
+		i += ft_strlen(mat[j++]);
 	}
 	return (mat);
 }

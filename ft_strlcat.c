@@ -6,7 +6,7 @@
 /*   By: dgomez-b <dgomez-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:08:12 by david             #+#    #+#             */
-/*   Updated: 2021/10/18 16:18:17 by dgomez-b         ###   ########.fr       */
+/*   Updated: 2021/10/21 15:56:53 by dgomez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	len1;
 	size_t	len2;
 
+	if (!dst || !src)
+		return (0);
 	len1 = ft_strlen(dst);
 	len2 = ft_strlen(src);
 	if (len1 > dstsize)
