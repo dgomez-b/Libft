@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgomez-b <dgomez-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgomez-b <dgomez-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/15 16:28:10 by dgomez-b          #+#    #+#             */
-/*   Updated: 2023/06/15 14:11:35 by dgomez-b         ###   ########.fr       */
+/*   Created: 2023/03/17 20:06:14 by dgomez-b          #+#    #+#             */
+/*   Updated: 2023/03/17 20:07:40 by dgomez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,17 @@
 
 /* ******************************* FUNCIONES ******************************** */
 
-char	*ft_strchr(const char *s, int c)
+size_t	ft_lstsize(t_list *lst)
 {
 	size_t	i;
 
-	if (!c)
-		return ((char *)(s + ft_strlen(s)));
+	if (!lst)
+		return (0);
 	i = 0;
-	while (s[i])
+	while (lst)
 	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
 		i++;
+		lst = lst->next;
 	}
-	if (s[i] == (char)c)
-		return ((char *)(s + i));
-	return (0);
+	return (i);
 }

@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgomez-b <dgomez-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgomez-b <dgomez-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/15 16:28:10 by dgomez-b          #+#    #+#             */
-/*   Updated: 2023/06/15 14:11:35 by dgomez-b         ###   ########.fr       */
+/*   Created: 2023/03/17 23:16:06 by dgomez-b          #+#    #+#             */
+/*   Updated: 2023/03/17 23:45:23 by dgomez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* ******************************* LIBRERIAS ******************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 /* ******************************* FUNCIONES ******************************** */
 
-char	*ft_strchr(const char *s, int c)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	i;
+	t_list	*nlst;
+	t_list	*new;
 
-	if (!c)
-		return ((char *)(s + ft_strlen(s)));
-	i = 0;
-	while (s[i])
+	if (!lst || !f || !del)
+		return (0);
+	nlst = 0;
+	while (lst)
 	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
-		i++;
+		new = ft_lstnew(f(lst->content));
+		if (!new)
+		{
+			ft_lstclear(&nlst, del);
+			return (0);
+		}
+		ft_lstadd_back(&nlst, new);
+		lst = lst->next;
 	}
-	if (s[i] == (char)c)
-		return ((char *)(s + i));
-	return (0);
+	return (nlst);
 }

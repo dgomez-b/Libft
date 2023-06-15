@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgomez-b <dgomez-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgomez-b <dgomez-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/15 16:28:10 by dgomez-b          #+#    #+#             */
-/*   Updated: 2023/06/15 14:11:35 by dgomez-b         ###   ########.fr       */
+/*   Created: 2023/03/17 22:39:56 by dgomez-b          #+#    #+#             */
+/*   Updated: 2023/03/17 22:51:46 by dgomez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,17 @@
 
 /* ******************************* FUNCIONES ******************************** */
 
-char	*ft_strchr(const char *s, int c)
+void	ft_lstclear(t_list **lst, void (*f)(void *))
 {
-	size_t	i;
+	t_list	*cur;
 
-	if (!c)
-		return ((char *)(s + ft_strlen(s)));
-	i = 0;
-	while (s[i])
+	if (!lst || !f)
+		return ;
+	while (*lst)
 	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
-		i++;
+		cur = (*lst)->next;
+		ft_lstdelone(*lst, f);
+		*lst = cur;
 	}
-	if (s[i] == (char)c)
-		return ((char *)(s + i));
-	return (0);
+	*lst = 0;
 }

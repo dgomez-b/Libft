@@ -6,7 +6,7 @@
 /*   By: dgomez-b <dgomez-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 22:09:52 by laura             #+#    #+#             */
-/*   Updated: 2021/10/21 15:49:10 by dgomez-b         ###   ########.fr       */
+/*   Updated: 2023/06/15 12:17:56 by dgomez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 # include <unistd.h>
 
 /* ******************************* PROTOTIPOS ******************************* */
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}				t_list;
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -47,7 +53,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*ft_strjoin(char *s1, char *s2);
 char	**ft_split(const char *s, char c);
 char	*ft_itoa(int n);
-char	*ft_substr(const char *s, size_t i, size_t f);
+char	*ft_substr(const char *s, unsigned int i, size_t f);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
@@ -56,5 +62,15 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strtrim(char const *s1, char const *set);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+size_t	ft_lstsize(t_list *lst);
+t_list	*ft_lstlast(t_list *lst);
+void	ft_lstdelone(t_list *lst, void (*f)(void *));
+void	ft_lstclear(t_list **lst, void (*f)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif

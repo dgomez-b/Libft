@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgomez-b <dgomez-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgomez-b <dgomez-b@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/15 16:28:10 by dgomez-b          #+#    #+#             */
-/*   Updated: 2023/06/15 14:11:35 by dgomez-b         ###   ########.fr       */
+/*   Created: 2023/03/17 23:03:12 by dgomez-b          #+#    #+#             */
+/*   Updated: 2023/03/17 23:13:00 by dgomez-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,13 @@
 
 /* ******************************* FUNCIONES ******************************** */
 
-char	*ft_strchr(const char *s, int c)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t	i;
-
-	if (!c)
-		return ((char *)(s + ft_strlen(s)));
-	i = 0;
-	while (s[i])
+	if (!f)
+		return ;
+	while (lst)
 	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
-		i++;
+		f(lst->content);
+		lst = lst->next;
 	}
-	if (s[i] == (char)c)
-		return ((char *)(s + i));
-	return (0);
 }
